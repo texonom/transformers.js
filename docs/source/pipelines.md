@@ -185,6 +185,7 @@ Logging `result[0].generated_text` to the console gives:
 <details>
 <summary>Click to view the console output</summary>
 <pre>
+Here's a simple implementation of the quick sort algorithm in Python:
 ```python
 def quick_sort(arr):
     if len(arr) <= 1:
@@ -205,7 +206,6 @@ print(sorted_arr)
 - **Partitioning**: The array is partitioned into three parts: elements less than the pivot (`left`), elements equal to the pivot (`middle`), and elements greater than the pivot (`right`). These partitions are then recursively sorted.
 - **Recursive Sorting**: The subarrays are sorted recursively using `quick_sort`.
 This approach ensures that each recursive call reduces the problem size by half until it reaches a base case.
-```
 </pre>
 </details>
 
