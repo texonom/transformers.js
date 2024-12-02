@@ -150,7 +150,7 @@ It adds depth and richness without being overpowering its taste buds alone
 
 ### Streaming
 
-Some pipelines such as `text-generation` or whisper `speech-to-text` models support streaming output. For example, when using a chat model like `Qwen2.5-Coder-0.5B-Instruct`, you can specify a callback function that will be called with each generated token text.
+Some pipelines such as `text-generation` or `automatic-speech-recognition` support streaming output. This is achieved using the `TextStreamer` class. For example, when using a chat model like `Qwen2.5-Coder-0.5B-Instruct`, you can specify a callback function that will be called with each generated token text (if unset, new tokens will be printed to the console).
 
 ```js
 import { pipeline, TextStreamer } from "@huggingface/transformers";
@@ -171,7 +171,8 @@ const messages = [
 // Create text streamer
 const streamer = new TextStreamer(generator.tokenizer, {
   skip_prompt: true,
-  callback_function: (text) => process.stdout.write(text), // Stream to command line
+  // Optionally, do something with the text (e.g., write to a textbox)
+  // callback_function: (text) => { /* Do something with text */ },
 })
 
 // Generate a response
