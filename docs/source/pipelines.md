@@ -171,7 +171,8 @@ const messages = [
 // Create text streamer
 const streamer = new TextStreamer(generator.tokenizer, {
   skip_prompt: true,
-  callback_function: (text) => process.stdout.write(text), // Stream to command line
+  // Optionally, do something with the text (e.g., write to a textbox)
+  // callback_function: (text) => { /* Do something with text */ },
 })
 
 // Generate a response
