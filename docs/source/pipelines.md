@@ -178,44 +178,37 @@ const streamer = new TextStreamer(generator.tokenizer, {
 const result = await generator(messages, { max_new_tokens: 512, do_sample: false, streamer });
 ```
 
-<pre>
-
 Logging `result[0].generated_text` to the console gives:
 
 
+<details>
+<summary>Click to view the console output</summary>
+<pre>
 ```python
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
-
     pivot = arr[len(arr) // 2]
     left = [x for x in arr if x < pivot]
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
-
     return quick_sort(left) + middle + quick_sort(right)
-
 # Example usage:
 arr = [3, 6, 8, 10, 1, 2]
 sorted_arr = quick_sort(arr)
 print(sorted_arr)
 ```
-
 ### Explanation:
-
 - **Base Case**: If the array has less than or equal to one element (i.e., `len(arr)` is less than or equal to `1`), it is already sorted and can be returned as is.
-
 - **Pivot Selection**: The pivot is chosen as the middle element of the array.
-
 - **Partitioning**: The array is partitioned into three parts: elements less than the pivot (`left`), elements equal to the pivot (`middle`), and elements greater than the pivot (`right`). These partitions are then recursively sorted.
-
 - **Recursive Sorting**: The subarrays are sorted recursively using `quick_sort`.
-
 This approach ensures that each recursive call reduces the problem size by half until it reaches a base case.
 ```
 </pre>
+</details>
 
-This allows you to process the output as it is generated, rather than waiting for the entire output to be generated before processing it.
+This streaming feature allows you to process the output as it is generated, rather than waiting for the entire output to be generated before processing it.
 
 
 For more information on the available options for each pipeline, refer to the [API Reference](./api/pipelines).
