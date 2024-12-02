@@ -46,7 +46,9 @@ export class TextStreamer extends BaseStreamer {
         super();
         this.tokenizer = tokenizer;
         this.skip_prompt = skip_prompt;
+        /** @type {(text: string) => void} */
         this.callback_function = callback_function ?? stdout_write;
+        /** @type {(tokens: bigint[]) => void} */
         this.token_callback_function = token_callback_function;
         this.decode_kwargs = { ...decode_kwargs, ...kwargs };
 
