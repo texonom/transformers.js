@@ -1070,7 +1070,10 @@ export class PreTrainedModel extends Callable {
 
         } else { // should be MODEL_TYPES.EncoderOnly
             if (modelType !== MODEL_TYPES.EncoderOnly) {
-                console.warn(`Model type for '${modelName ?? config?.model_type}' not found, assuming encoder-only architecture. Please report this at ${GITHUB_ISSUE_URL}.`)
+                const type = modelName ?? config?.model_type;
+                if (type !== 'custom') {
+                    console.warn(`Model type for '${type}' not found, assuming encoder-only architecture. Please report this at ${GITHUB_ISSUE_URL}.`)
+                }
             }
             info = await Promise.all([
                 constructSessions(pretrained_model_name_or_path, {
@@ -1814,7 +1817,7 @@ export class PreTrainedModel extends Callable {
             const dtype = session?.config?.kv_cache_dtype ?? 'float32';
             const empty = (dtype === 'float16') ? new Uint16Array() : [];
 
-            const batch_size = (decoderFeeds[this.main_input_name] ?? decoderFeeds.attention_mask).dims?.[0] ?? 1;
+            const batch_size = (decoderFeeds[this.main_input_name] ?? decoderFeeds.attention_mask)?.dims?.[0] ?? 1;
             const shapes = getKeyValueShapes(this.config, { batch_size });
 
             for (const name in shapes) {
